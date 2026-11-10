@@ -137,6 +137,22 @@ section{padding:56px 0}
 .get div i{flex:0 0 28px;height:28px;border-radius:50%;background:var(--yel);color:#000;display:grid;place-items:center;font-weight:800;font-style:normal;font-size:14px}
 .get b{display:block;color:var(--txt)}
 .get span{font-size:14px;color:var(--mut)}
+/* PRECISA */
+.need{display:grid;gap:12px}
+.need .item{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.need .item.main{border-color:rgba(255,214,0,.55);background:linear-gradient(180deg,rgba(255,214,0,.08),var(--card))}
+.need .ic{flex:0 0 44px;height:44px;border-radius:12px;background:#24242E;display:grid;place-items:center;color:var(--yel)}
+.need .item.main .ic{background:var(--yel);color:#0B0B0F}
+.need .ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.need b{display:block;color:var(--txt);font-size:16px}
+.need span{font-size:14px;color:var(--mut)}
+.need .badge{display:inline-block;margin-top:6px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--yel);background:rgba(255,214,0,.12);border-radius:999px;padding:3px 9px}
+.need .item.main .badge{background:var(--yel);color:#0B0B0F}
+.need .tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.need .tools div{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 10px;font-size:13px;font-weight:600;color:var(--txt)}
+.need .tools svg{width:18px;height:18px;fill:none;stroke:var(--yel);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 18px}
+.note{margin-top:14px;display:block;font-size:14px;color:var(--mut);border-left:3px solid var(--yel);padding:4px 0 4px 12px}
+.note b{color:var(--txt)}
 /* OFERTA */
 .offer{background:linear-gradient(180deg,var(--bg2),var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .price{background:var(--card);border:1px solid var(--yel);border-radius:22px;padding:26px 20px;text-align:center;box-shadow:0 0 0 6px rgba(255,214,0,.08)}
@@ -321,6 +337,32 @@ fbq('init','1124095767280326');fbq('track','PageView');try{console.log('[pixel] 
   </div>
 </section>
 
+<!-- 6b. O QUE VOCÊ VAI PRECISAR -->
+<section id="precisa" style="background:var(--bg2)">
+  <div class="wrap">
+    <span class="kicker">O que você vai precisar</span>
+    <h2>Uma assinatura. <span class="y">O resto é grátis pra começar.</span></h2>
+    <div class="need">
+      <div class="item main">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a7 7 0 0 0-7 7c0 2.4 1.2 4.3 3 5.6V18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.4c1.8-1.3 3-3.2 3-5.6a7 7 0 0 0-7-7z"/><path d="M10 22h4"/></svg></div>
+        <div><b>Claude Pro</b><span>A assinatura paga do Claude. É ele que roteiriza, monta e agenda: faz tudo.</span><br><span class="badge">Único custo fixo</span></div>
+      </div>
+      <div class="item">
+        <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div>
+        <div><b>Ferramentas conectadas</b><span>Todas com plano grátis pra começar. Você cria as contas seguindo as aulas.</span>
+          <div class="tools">
+            <div><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M8 7v10"/><path d="M16 7v10"/><path d="M4 10v4"/><path d="M20 10v4"/></svg>ElevenLabs</div>
+            <div><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18"/><path d="M8 2v4"/><path d="M16 2v4"/><path d="M9 15l2 2 4-4"/></svg>Metricool</div>
+            <div><svg viewBox="0 0 24 24"><path d="M9 4h6l6 10-3 5H6l-3-5z"/><path d="M9 4l6 10"/><path d="M3 14h12"/></svg>Google Drive</div>
+            <div><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-5A8 8 0 1 1 21 12z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg>ManyChat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note"><b>As ferramentas não estão inclusas:</b> o curso te ensina a montar e conectar cada uma.</p>
+  </div>
+</section>
+
 <!-- 7. OFERTA -->
 <section class="offer" id="oferta">
   <div class="wrap">
@@ -357,7 +399,7 @@ fbq('init','1124095767280326');fbq('track','PageView');try{console.log('[pixel] 
     <span class="kicker">Dúvidas</span>
     <h2>Perguntas frequentes</h2>
     <div class="faq">
-      <details><summary>Preciso de plano pago do Claude?<i class="chev" aria-hidden="true"></i></summary><p>Sim, o plano Pro é recomendado pra usar conectores e tarefas agendadas. ElevenLabs e Metricool têm plano grátis pra começar. O curso não inclui essas assinaturas.</p></details>
+      <details><summary>Preciso de plano pago do Claude?<i class="chev" aria-hidden="true"></i></summary><p>Sim, o plano Pro é recomendado pra usar conectores e tarefas agendadas. ElevenLabs, Metricool, Google Drive e ManyChat têm plano grátis pra começar. O curso não inclui essas assinaturas.</p></details>
       <details><summary>Dá pra fazer tudo pelo celular?<i class="chev" aria-hidden="true"></i></summary><p>Dá. O curso foi pensado pra quem está no celular: o Claude, o ElevenLabs e o Metricool funcionam pelo navegador ou pelos apps.</p></details>
       <details><summary>Preciso aparecer ou usar minha voz?<i class="chev" aria-hidden="true"></i></summary><p>Não. Nenhuma etapa pede sua imagem ou sua voz. A narração é feita por voz de IA e o visual usa vídeos de fundo liberados pra uso.</p></details>
       <details><summary>Quanto tempo por dia eu preciso?<i class="chev" aria-hidden="true"></i></summary><p>Depois de montar a máquina (as primeiras aulas), a rotina de revisar e aprovar os reels leva poucos minutos por dia. O tempo de montagem varia com o seu ritmo.</p></details>
