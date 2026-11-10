@@ -2,14 +2,18 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Máquina de Reels — crie reels todos os dias sem gravar, sem aparecer e sem editar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Máquina de Reels | Reels todo dia com o Claude, sem gravar</title>
 <meta name="description" content="Curso 100% prático: aprenda a usar o Claude com ElevenLabs, Google Drive e Metricool pra criar, narrar, montar e agendar reels no Instagram sem gravar, sem aparecer e sem editar. R$ 27, garantia de 7 dias.">
 <meta name="theme-color" content="#0B0B0F">
-<meta property="og:title" content="Máquina de Reels — reels todos os dias sem aparecer">
-<meta property="og:description" content="O Claude roteiriza, a voz de IA narra, o Metricool agenda. 16 aulas práticas por R$ 27.">
+<meta property="og:title" content="Máquina de Reels | Reels todo dia com o Claude, sem gravar">
+<meta property="og:description" content="Curso 100% prático: o Claude roteiriza, a voz de IA narra e o Metricool agenda no seu Instagram. 16 aulas por R$ 27, garantia de 7 dias.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://maquinadereels-site.vercel.app/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:url" content="https://maquinadereels-site.vercel.app/">
 <link rel="canonical" href="https://maquinadereels-site.vercel.app/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FFD600'/%3E%3Cpath d='M24 18l22 14-22 14z' fill='%230B0B0F'/%3E%3C/svg%3E">
@@ -90,10 +94,12 @@ section{padding:56px 0}
 .a3 i:nth-child(2n){animation-delay:.15s;background:#fff}.a3 i:nth-child(3n){animation-delay:.3s}.a3 i:nth-child(5n){animation-delay:.45s}
 @keyframes wave{0%,100%{height:12px}50%{height:60px}}
 /* step4 calendar */
-.a4 .cal{position:absolute;inset:12px 14px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
-.a4 .cal b{display:grid;place-items:center;background:#24242E;border-radius:6px;font-size:11px;color:#9a9aa8;position:relative;height:100%}
-.a4 .cal b::after{content:'✓';position:absolute;inset:0;display:grid;place-items:center;background:var(--yel);color:#0B0B0F;border-radius:6px;font-weight:800;opacity:0;animation:check 5s ease infinite}
-.a4 .cal b:nth-child(1)::after{animation-delay:0s}.a4 .cal b:nth-child(2)::after{animation-delay:.4s}.a4 .cal b:nth-child(3)::after{animation-delay:.8s}.a4 .cal b:nth-child(4)::after{animation-delay:1.2s}.a4 .cal b:nth-child(5)::after{animation-delay:1.6s}.a4 .cal b:nth-child(6)::after{animation-delay:2s}.a4 .cal b:nth-child(7)::after{animation-delay:2.4s}
+.a4 .cal{position:absolute;inset:10px 12px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.a4 .d{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.a4 .d span{font-size:10px;font-weight:700;color:#7a7a8a;letter-spacing:.05em;line-height:1}
+.a4 .d b{position:relative;width:100%;flex:1;border-radius:8px;background:#24242E;color:#9a9aa8;font-size:12px;font-weight:600;display:grid;place-items:center}
+.a4 .d b::after{content:'';position:absolute;inset:0;border-radius:8px;background:var(--yel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B0B0F' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/16px no-repeat;opacity:0;animation:check 5s ease infinite}
+.a4 .d:nth-child(1) b::after{animation-delay:0s}.a4 .d:nth-child(2) b::after{animation-delay:.4s}.a4 .d:nth-child(3) b::after{animation-delay:.8s}.a4 .d:nth-child(4) b::after{animation-delay:1.2s}.a4 .d:nth-child(5) b::after{animation-delay:1.6s}.a4 .d:nth-child(6) b::after{animation-delay:2s}.a4 .d:nth-child(7) b::after{animation-delay:2.4s}
 @keyframes check{0%{opacity:0;transform:scale(.6)}8%,85%{opacity:1;transform:scale(1)}100%{opacity:0}}
 /* MOCKUPS */
 .phones{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 18px;margin:0 -18px;padding-left:18px;padding-right:18px;scrollbar-width:none}
@@ -120,8 +126,9 @@ section{padding:56px 0}
 .acc summary{list-style:none;display:flex;align-items:center;gap:12px;padding:16px;cursor:pointer;font-weight:700;font-size:16px;-webkit-tap-highlight-color:transparent}
 .acc summary::-webkit-details-marker{display:none}
 .acc summary .n{flex:0 0 36px;height:36px;border-radius:10px;background:var(--yel);color:#000;display:grid;place-items:center;font-family:Anton,Impact,sans-serif;font-size:18px}
-.acc summary .pl{margin-left:auto;width:24px;height:24px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:16px;color:var(--mut);transition:transform .2s}
-.acc details[open] summary .pl{transform:rotate(45deg)}
+.acc summary .pl{margin-left:auto;flex:0 0 28px;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center}
+.chev{display:block;width:8px;height:8px;border-right:2px solid var(--yel);border-bottom:2px solid var(--yel);transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.acc details[open] .chev,.faq details[open] .chev{transform:translateY(2px) rotate(-135deg)}
 .acc .body{padding:0 16px 16px 64px;font-size:15px;color:var(--mut)}
 .acc .body li{margin:6px 0 0 16px}
 /* RECEBE */
@@ -149,8 +156,7 @@ section{padding:56px 0}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{list-style:none;padding:16px 0;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;gap:12px;-webkit-tap-highlight-color:transparent}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:'+';color:var(--yel);font-size:22px;line-height:1;transition:transform .2s}
-.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary .chev{flex:0 0 auto;margin-top:8px;margin-right:4px}
 .faq p{padding:0 0 16px;font-size:15px}
 /* FINAL / FOOTER */
 .final{text-align:center;background:radial-gradient(100% 70% at 50% 100%,rgba(255,214,0,.16),transparent 60%)}
@@ -167,11 +173,11 @@ footer p{margin-top:10px;font-size:12px}
 <!-- Meta Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1124095767280326');fbq('track','PageView');
+fbq('init','1124095767280326');fbq('track','PageView');try{console.log('[pixel] PageView')}catch(e){}
 </script>
-<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1124095767280326&ev=PageView&noscript=1"></noscript>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1124095767280326&ev=PageView&noscript=1"></noscript>
 
 <!-- 1. HERO -->
 <header class="hero" id="topo">
@@ -219,19 +225,19 @@ fbq('init','1124095767280326');fbq('track','PageView');
     <h2>Quatro passos. <span class="y">Zero câmera.</span></h2>
     <div class="steps">
       <div class="step">
-        <div class="anim a1"><div class="bub">"Faz um reel sobre 3 erros de quem começa a investir"</div><div class="dots"><i></i><i></i><i></i></div></div>
+        <div class="anim a1" aria-hidden="true"><div class="bub">"Faz um reel sobre 3 erros de quem começa a investir"</div><div class="dots"><i></i><i></i><i></i></div></div>
         <div><h3>Você pede</h3><p>Manda o tema em uma frase, do seu celular mesmo. Só isso.</p></div>
       </div>
       <div class="step">
-        <div class="anim a2"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+        <div class="anim a2" aria-hidden="true"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
         <div><h3>O Claude roteiriza</h3><p>Gancho, desenvolvimento e chamada pra ação, no formato que funciona em reels. Com os prompts prontos do curso.</p></div>
       </div>
       <div class="step">
-        <div class="anim a3"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="anim a3" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <div><h3>Voz de IA narra</h3><p>O ElevenLabs transforma o roteiro em narração natural, em português. Sua voz não entra em nada.</p></div>
       </div>
       <div class="step">
-        <div class="anim a4"><div class="cal"><b>S</b><b>T</b><b>Q</b><b>Q</b><b>S</b><b>S</b><b>D</b></div></div>
+        <div class="anim a4" aria-hidden="true"><div class="cal"><div class="d"><span>S</span><b>10</b></div><div class="d"><span>T</span><b>11</b></div><div class="d"><span>Q</span><b>12</b></div><div class="d"><span>Q</span><b>13</b></div><div class="d"><span>S</span><b>14</b></div><div class="d"><span>S</span><b>15</b></div><div class="d"><span>D</span><b>16</b></div></div></div>
         <div><h3>Agenda no Instagram</h3><p>O vídeo vai pro Google Drive e o Metricool publica no dia e hora certos. Todo dia, no automático.</p></div>
       </div>
     </div>
@@ -290,13 +296,13 @@ fbq('init','1124095767280326');fbq('track','PageView');
     <span class="kicker">16 aulas · 7 módulos</span>
     <h2>O que você vai construir</h2>
     <div class="acc">
-      <details open><summary><span class="n">1</span>Fundação: nicho e página do zero<span class="pl">+</span></summary><div class="body">Escolha um nicho com demanda, defina o posicionamento e monte o perfil (nome, bio, identidade) sem precisar de designer.</div></details>
-      <details><summary><span class="n">2</span>O cérebro da página: Projetos no Claude<span class="pl">+</span></summary><div class="body">Crie um Projeto no Claude com a memória da sua página: tom de voz, público, formatos. A partir daqui, todo roteiro sai no seu estilo.</div></details>
-      <details><summary><span class="n">3</span>Produção sem aparecer: 1º reel, modo lote, vídeos liberados<span class="pl">+</span></summary><div class="body">Seu primeiro reel do início ao fim. Depois, o modo lote: vários reels em uma sentada. E onde achar vídeos de fundo liberados pra uso.</div></details>
-      <details><summary><span class="n">4</span>Viralização: métricas e formatos validados<span class="pl">+</span></summary><div class="body">Como ler retenção, alcance e salvamentos no Metricool, e os formatos de reel que você vai testar e repetir.</div></details>
-      <details><summary><span class="n">5</span>Piloto automático: tarefas agendadas postando todo dia<span class="pl">+</span></summary><div class="body">Monte rotinas automáticas no Claude que produzem e agendam seus reels. Você revisa, a máquina publica.</div></details>
-      <details><summary><span class="n">6</span>Comenta e recebe: link automático na DM<span class="pl">+</span></summary><div class="body">Configure o envio automático de link na DM quando alguém comenta a palavra-chave do seu reel.</div></details>
-      <details><summary><span class="n">7</span>Monetização: afiliado e produto próprio<span class="pl">+</span></summary><div class="body">Como estruturar a página pra divulgar produtos como afiliado (Shopee, TikTok Shop) ou um produto seu. Aqui você aprende o método, não uma promessa.</div></details>
+      <details open><summary><span class="n">1</span>Fundação: nicho e página do zero<span class="pl" aria-hidden="true"><i class="chev"></i></span></summary><div class="body">Escolha um nicho com demanda, defina o posicionamento e monte o perfil (nome, bio, identidade) sem precisar de designer.</div></details>
+      <details><summary><span class="n">2</span>O cérebro da página: Projetos no Claude<span class="pl" aria-hidden="true"><i class="chev"></i></span></summary><div class="body">Crie um Projeto no Claude com a memória da sua página: tom de voz, público, formatos. A partir daqui, todo roteiro sai no seu estilo.</div></details>
+      <details><summary><span class="n">3</span>Produção sem aparecer: 1º reel, modo lote, vídeos liberados<span class="pl" aria-hidden="true"><i class="chev"></i></span></summary><div class="body">Seu primeiro reel do início ao fim. Depois, o modo lote: vários reels em uma sentada. E onde achar vídeos de fundo liberados pra uso.</div></details>
+      <details><summary><span class="n">4</span>Viralização: métricas e formatos validados<span class="pl" aria-hidden="true"><i class="chev"></i></span></summary><div class="body">Como ler retenção, alcance e salvamentos no Metricool, e os formatos de reel que você vai testar e repetir.</div></details>
+      <details><summary><span class="n">5</span>Piloto automático: tarefas agendadas postando todo dia<span class="pl" aria-hidden="true"><i class="chev"></i></span></summary><div class="body">Monte rotinas automáticas no Claude que produzem e agendam seus reels. Você revisa, a máquina publica.</div></details>
+      <details><summary><span class="n">6</span>Comenta e recebe: link automático na DM<span class="pl" aria-hidden="true"><i class="chev"></i></span></summary><div class="body">Configure o envio automático de link na DM quando alguém comenta a palavra-chave do seu reel.</div></details>
+      <details><summary><span class="n">7</span>Monetização: afiliado e produto próprio<span class="pl" aria-hidden="true"><i class="chev"></i></span></summary><div class="body">Como estruturar a página pra divulgar produtos como afiliado (Shopee, TikTok Shop) ou um produto seu. Aqui você aprende o método, não uma promessa.</div></details>
     </div>
   </div>
 </section>
@@ -351,12 +357,12 @@ fbq('init','1124095767280326');fbq('track','PageView');
     <span class="kicker">Dúvidas</span>
     <h2>Perguntas frequentes</h2>
     <div class="faq">
-      <details><summary>Preciso de plano pago do Claude?</summary><p>Sim, o plano Pro é recomendado pra usar conectores e tarefas agendadas. ElevenLabs e Metricool têm plano grátis pra começar. O curso não inclui essas assinaturas.</p></details>
-      <details><summary>Dá pra fazer tudo pelo celular?</summary><p>Dá. O curso foi pensado pra quem está no celular: o Claude, o ElevenLabs e o Metricool funcionam pelo navegador ou pelos apps.</p></details>
-      <details><summary>Preciso aparecer ou usar minha voz?</summary><p>Não. Nenhuma etapa pede sua imagem ou sua voz. A narração é feita por voz de IA e o visual usa vídeos de fundo liberados pra uso.</p></details>
-      <details><summary>Quanto tempo por dia eu preciso?</summary><p>Depois de montar a máquina (as primeiras aulas), a rotina de revisar e aprovar os reels leva poucos minutos por dia. O tempo de montagem varia com o seu ritmo.</p></details>
-      <details><summary>Como recebo o acesso?</summary><p>Na hora da compra a Kiwify envia um e-mail com o login da área de membros. Confere a caixa de spam se não chegar em alguns minutos.</p></details>
-      <details><summary>Isso promete que vou ganhar dinheiro?</summary><p>Não. O curso ensina uma habilidade: produzir e agendar reels sem aparecer, e como estruturar a página pra monetizar. Resultado depende do seu nicho, da sua constância e do mercado.</p></details>
+      <details><summary>Preciso de plano pago do Claude?<i class="chev" aria-hidden="true"></i></summary><p>Sim, o plano Pro é recomendado pra usar conectores e tarefas agendadas. ElevenLabs e Metricool têm plano grátis pra começar. O curso não inclui essas assinaturas.</p></details>
+      <details><summary>Dá pra fazer tudo pelo celular?<i class="chev" aria-hidden="true"></i></summary><p>Dá. O curso foi pensado pra quem está no celular: o Claude, o ElevenLabs e o Metricool funcionam pelo navegador ou pelos apps.</p></details>
+      <details><summary>Preciso aparecer ou usar minha voz?<i class="chev" aria-hidden="true"></i></summary><p>Não. Nenhuma etapa pede sua imagem ou sua voz. A narração é feita por voz de IA e o visual usa vídeos de fundo liberados pra uso.</p></details>
+      <details><summary>Quanto tempo por dia eu preciso?<i class="chev" aria-hidden="true"></i></summary><p>Depois de montar a máquina (as primeiras aulas), a rotina de revisar e aprovar os reels leva poucos minutos por dia. O tempo de montagem varia com o seu ritmo.</p></details>
+      <details><summary>Como recebo o acesso?<i class="chev" aria-hidden="true"></i></summary><p>Na hora da compra a Kiwify envia um e-mail com o login da área de membros. Confere a caixa de spam se não chegar em alguns minutos.</p></details>
+      <details><summary>Isso promete que vou ganhar dinheiro?<i class="chev" aria-hidden="true"></i></summary><p>Não. O curso ensina uma habilidade: produzir e agendar reels sem aparecer, e como estruturar a página pra monetizar. Resultado depende do seu nicho, da sua constância e do mercado.</p></details>
     </div>
   </div>
 </section>
@@ -384,21 +390,50 @@ fbq('init','1124095767280326');fbq('track','PageView');
 <script>
 (function(){
   var CHECKOUT='https://pay.kiwify.com.br/gtSBPIE';
-  var fb=function(){ if(window.fbq){ try{ fbq.apply(null,arguments);}catch(e){} } };
+  var PRODUCT={content_name:'Maquina de Reels',value:27,currency:'BRL'};
+  function track(kind,name,data){
+    try{ console.log('[pixel]',name,data||''); }catch(e){}
+    if(window.fbq){ try{ fbq(kind,name,data); }catch(e){} }
+  }
 
-  // UTM passthrough
-  var params=new URLSearchParams(location.search), keep=new URLSearchParams();
-  params.forEach(function(v,k){ if(/^utm_/i.test(k)||['src','sck','fbclid','ref'].indexOf(k.toLowerCase())>-1) keep.append(k,v); });
-  var url=CHECKOUT+(keep.toString()?'?'+keep.toString():'');
-  var buys=document.querySelectorAll('.buy');
-  buys.forEach(function(a){
-    a.href=url;
-    a.addEventListener('click',function(){ fb('track','InitiateCheckout',{content_name:'Maquina de Reels',currency:'BRL',value:27}); });
+  // 2) UTMs -> checkout (keeps params the link already has)
+  var KEEP=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','src','sck'];
+  var incoming=new URLSearchParams(location.search), tracking={};
+  KEEP.forEach(function(k){ var v=incoming.get(k); if(v) tracking[k]=v; });
+  function withUtms(href){
+    try{
+      var u=new URL(href,location.href);
+      Object.keys(tracking).forEach(function(k){ u.searchParams.set(k,tracking[k]); });
+      return u.toString();
+    }catch(e){ return href; }
+  }
+  var links=[].slice.call(document.querySelectorAll('a[href*="pay.kiwify.com.br"]'));
+  links.forEach(function(a){ a.href=withUtms(a.href); });
+
+  // 1) InitiateCheckout before redirect (small delay so the hit leaves)
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      if(e.metaKey||e.ctrlKey||e.shiftKey||e.button===1) { track('track','InitiateCheckout',PRODUCT); return; }
+      e.preventDefault();
+      var url=a.href, done=false;
+      function go(){ if(done) return; done=true; location.href=url; }
+      track('track','InitiateCheckout',PRODUCT);
+      setTimeout(go,300);
+    });
   });
 
+  // 1) ViewContent once: 50% scroll or 15 s, whichever first
+  var vcDone=false;
+  function viewContent(){ if(vcDone) return; vcDone=true; track('track','ViewContent',PRODUCT); window.removeEventListener('scroll',onScrollVC); }
+  function onScrollVC(){
+    var doc=document.documentElement, max=doc.scrollHeight-window.innerHeight;
+    if(max>0 && window.scrollY/max>=0.5) viewContent();
+  }
+  window.addEventListener('scroll',onScrollVC,{passive:true});
+  setTimeout(viewContent,15000);
+
   // Sticky CTA after first fold
-  var sticky=document.getElementById('sticky'), hero=document.querySelector('.hero');
-  var fin=document.getElementById('final');
+  var sticky=document.getElementById('sticky'), hero=document.querySelector('.hero'), fin=document.getElementById('final');
   function onScroll(){
     var past=window.scrollY>hero.offsetHeight-80;
     var atEnd=fin.getBoundingClientRect().top<window.innerHeight*0.6;
@@ -406,29 +441,27 @@ fbq('init','1124095767280326');fbq('track','PageView');
   }
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-  // VSL player
+  // 3) VSL player
   var v=document.getElementById('vsl'), p=document.getElementById('player'), tap=document.getElementById('tap'), mute=document.getElementById('mute'), prog=document.getElementById('prog');
   var fired={};
-  function markers(){
+  v.addEventListener('timeupdate',function(){
     if(!v.duration) return;
     var pct=v.currentTime/v.duration*100;
     prog.style.width=pct+'%';
-    [25,50,75].forEach(function(m){ if(pct>=m&&!fired[m]){ fired[m]=1; fb('track','ViewContent',{content_name:'VSL '+m+'%',content_category:'vsl',video_percent:m}); } });
-  }
-  v.addEventListener('timeupdate',markers);
-  v.addEventListener('ended',function(){ if(!fired[100]){fired[100]=1; fb('trackCustom','VSLComplete');} });
+    [25,50,75].forEach(function(m){ if(pct>=m&&!fired[m]){ fired[m]=1; track('trackCustom','VSL'+m,{video_percent:m}); } });
+  });
+  v.addEventListener('ended',function(){ if(!fired[100]){fired[100]=1; track('trackCustom','VSLComplete');} });
   function unmute(){
-    v.muted=false; v.currentTime=0; v.loop=false; p.classList.add('on'); mute.textContent='🔊';
+    v.muted=false; v.defaultMuted=false; v.loop=false; p.classList.add('on'); mute.textContent='🔊';
+    try{ v.currentTime=0; }catch(e){}
     var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){});
-    fb('trackCustom','VSLUnmute');
+    track('trackCustom','VSLUnmute');
   }
   tap.addEventListener('click',unmute);
   mute.addEventListener('click',function(){ v.muted=!v.muted; mute.textContent=v.muted?'🔇':'🔊'; });
-  // Block skipping: no native controls, taps on video toggle play/pause only
   v.addEventListener('click',function(){ if(!p.classList.contains('on')) return; v.paused?v.play():v.pause(); });
   v.addEventListener('contextmenu',function(e){e.preventDefault();});
-  // Resume muted autoplay if browser blocked it
-  v.play&&v.play().catch(function(){});
+  var first=v.play(); if(first&&first.catch) first.catch(function(){});
 })();
 </script>
 </body>
