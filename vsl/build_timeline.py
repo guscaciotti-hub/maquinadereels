@@ -16,7 +16,7 @@ def at(txt,n=0):
     return hits[n]['start']
 scenes=[
  {'id':'s0','start':0,'end':at('todo')},
- {'id':'s1','start':at('todo'),'end':at('e',1),'cues':[at('precisa')-at('todo'),at('gravar')-at('todo'),at('editar')-at('todo'),at('tempo')-at('todo'),at('resultado')-at('todo')]},
+ {'id':'s1','start':at('todo'),'end':at('e',1),'cues':[0.3,at('gravar')-at('todo'),at('editar')-at('todo'),at('tempo')-at('todo'),at('resultado')-at('todo')]},
  {'id':'s2','start':at('e',1),'end':at('funciona')},
  {'id':'s3','start':at('funciona'),'end':at('isso',1),'cues':[at('pede')-at('funciona'),at('escreve')-at('funciona'),at('elevenlabs')-at('funciona'),at('metricool')-at('funciona'),at('sem',0)-at('funciona'),at('sem',1)-at('funciona'),at('sem',2)-at('funciona')]},
  {'id':'s4','start':at('isso',1),'end':at('tudo',1),'cues':[at('passo')-at('isso',1),at('dezesseis')-at('isso',1)]},
