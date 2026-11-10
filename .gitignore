@@ -1,0 +1,4 @@
+vsl/build/frames/
+vsl/build/preview/
+vsl/build/*.log
+node_modules/

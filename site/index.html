@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Máquina de Reels — crie reels todos os dias sem gravar, sem aparecer e sem editar</title>
+<meta name="description" content="Curso 100% prático: aprenda a usar o Claude com ElevenLabs, Google Drive e Metricool pra criar, narrar, montar e agendar reels no Instagram sem gravar, sem aparecer e sem editar. R$ 27, garantia de 7 dias.">
+<meta name="theme-color" content="#0B0B0F">
+<meta property="og:title" content="Máquina de Reels — reels todos os dias sem aparecer">
+<meta property="og:description" content="O Claude roteiriza, a voz de IA narra, o Metricool agenda. 16 aulas práticas por R$ 27.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/img/og.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FFD600'/%3E%3Cpath d='M24 18l22 14-22 14z' fill='%230B0B0F'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/Anton-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/vsl-poster.webp" as="image" fetchpriority="high">
+<style>
+@font-face{font-family:'Anton';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/Anton-400-latin.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;src:url(assets/fonts/Inter-latin.woff2) format('woff2')}
+:root{--bg:#0B0B0F;--bg2:#13131A;--card:#17171F;--line:#262633;--txt:#F4F4F6;--mut:#A3A3B2;--yel:#FFD600;--yel2:#FFC400;--ok:#4ADE80;--r:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--txt);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:17px;line-height:1.5;overflow-x:hidden;padding-bottom:88px}
+h1,h2,h3,.anton{font-family:Anton,Impact,'Arial Narrow Bold',sans-serif;font-weight:400;letter-spacing:.01em;text-transform:uppercase;line-height:1.02}
+h1{font-size:clamp(38px,10.5vw,64px)}
+h2{font-size:clamp(30px,8vw,48px);margin-bottom:14px}
+h3{font-size:22px}
+p{color:var(--mut)}
+strong{color:var(--txt);font-weight:700}
+.y{color:var(--yel)}
+.wrap{width:100%;max-width:560px;margin:0 auto;padding:0 18px}
+section{padding:56px 0}
+.kicker{display:inline-block;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--yel);margin-bottom:12px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:64px;padding:16px 20px;background:var(--yel);color:#0B0B0F;font-family:Anton,Impact,sans-serif;font-size:22px;letter-spacing:.03em;text-transform:uppercase;text-decoration:none;border:0;border-radius:14px;cursor:pointer;box-shadow:0 10px 30px rgba(255,214,0,.25);transition:transform .12s ease,background .12s ease;-webkit-tap-highlight-color:transparent}
+.btn:active{transform:scale(.98);background:var(--yel2)}
+.btn small{display:block;font-family:Inter,sans-serif;font-size:12px;font-weight:600;letter-spacing:0;text-transform:none;opacity:.8}
+.sub{margin-top:12px;font-size:14px;color:var(--mut);text-align:center}
+.sub b{color:var(--txt)}
+/* HERO */
+.hero{padding:28px 0 48px;background:radial-gradient(120% 60% at 50% -10%,rgba(255,214,0,.18),transparent 60%),var(--bg)}
+.hero .kicker{margin-bottom:14px}
+.hero h1 span{color:var(--yel)}
+.hero .lead{margin:16px 0 22px;font-size:18px;color:var(--txt);opacity:.9}
+.player{position:relative;width:100%;max-width:400px;margin:0 auto 22px;aspect-ratio:9/16;background:#000;border-radius:22px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 1px var(--line)}
+.player video{width:100%;height:100%;object-fit:cover;display:block}
+.tap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(180deg,rgba(11,11,15,.15),rgba(11,11,15,.55));border:0;cursor:pointer;color:var(--txt);font-family:Inter,sans-serif}
+.tap .ico{width:84px;height:84px;border-radius:50%;background:var(--yel);display:grid;place-items:center;box-shadow:0 0 0 12px rgba(255,214,0,.25);animation:pulse 1.6s ease-in-out infinite}
+.tap .ico svg{width:40px;height:40px;fill:#0B0B0F}
+.tap .lbl{font-family:Anton,Impact,sans-serif;font-size:26px;letter-spacing:.04em;text-transform:uppercase;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.tap .hint{font-size:13px;font-weight:600;color:#fff;opacity:.85}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 10px rgba(255,214,0,.22)}50%{box-shadow:0 0 0 22px rgba(255,214,0,.08)}}
+.player.on .tap{display:none}
+.mute{position:absolute;right:12px;bottom:12px;z-index:3;display:none;width:44px;height:44px;border-radius:50%;background:rgba(11,11,15,.7);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:18px;cursor:pointer}
+.player.on .mute{display:grid;place-items:center}
+.prog{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.15);z-index:2}
+.prog i{display:block;height:100%;width:0;background:var(--yel)}
+/* DORES */
+.cards{display:grid;gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.card .em{font-size:30px;line-height:1;margin-bottom:10px}
+.card h3{margin-bottom:6px}
+.card p{font-size:16px}
+/* PASSOS */
+.steps{display:grid;gap:14px;counter-reset:s}
+.step{position:relative;display:grid;grid-template-columns:1fr;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;overflow:hidden}
+.step::before{counter-increment:s;content:counter(s);position:absolute;right:14px;top:10px;font-family:Anton,Impact,sans-serif;font-size:56px;color:rgba(255,214,0,.12);line-height:1}
+.step h3{font-size:20px}
+.step p{font-size:15px}
+.anim{height:92px;border-radius:12px;background:var(--bg);border:1px solid var(--line);position:relative;overflow:hidden}
+/* step1 chat bubble typing */
+.a1 .bub{position:absolute;left:12px;top:16px;max-width:78%;background:var(--yel);color:#0B0B0F;font-weight:700;font-size:13px;padding:9px 12px;border-radius:14px 14px 14px 4px;animation:popin 4s ease infinite}
+.a1 .dots{position:absolute;right:12px;bottom:14px;display:flex;gap:5px;background:#24242E;padding:10px 12px;border-radius:14px 14px 4px 14px;animation:fadein 4s ease infinite}
+.a1 .dots i{width:7px;height:7px;border-radius:50%;background:#ccc;animation:bounce 1s infinite}
+.a1 .dots i:nth-child(2){animation-delay:.15s}.a1 .dots i:nth-child(3){animation-delay:.3s}
+@keyframes popin{0%{opacity:0;transform:translateY(8px) scale(.9)}10%,90%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes fadein{0%,25%{opacity:0}40%,90%{opacity:1}100%{opacity:0}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+/* step2 lines typing */
+.a2 .ln{position:absolute;left:14px;height:9px;border-radius:5px;background:#3A3A48;animation:grow 4s ease infinite}
+.a2 .ln:nth-child(1){top:16px;width:70%;background:var(--yel)}
+.a2 .ln:nth-child(2){top:34px;width:88%;animation-delay:.5s}
+.a2 .ln:nth-child(3){top:52px;width:60%;animation-delay:1s}
+.a2 .ln:nth-child(4){top:70px;width:78%;animation-delay:1.5s}
+@keyframes grow{0%{transform:scaleX(0);transform-origin:left}30%,90%{transform:scaleX(1);transform-origin:left}100%{transform:scaleX(0);transform-origin:left}}
+/* step3 waveform */
+.a3{display:flex;align-items:center;justify-content:center;gap:5px}
+.a3 i{width:6px;height:20px;border-radius:3px;background:var(--yel);animation:wave 1.1s ease-in-out infinite}
+.a3 i:nth-child(2n){animation-delay:.15s;background:#fff}.a3 i:nth-child(3n){animation-delay:.3s}.a3 i:nth-child(5n){animation-delay:.45s}
+@keyframes wave{0%,100%{height:12px}50%{height:60px}}
+/* step4 calendar */
+.a4 .cal{position:absolute;inset:12px 14px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.a4 .cal b{display:grid;place-items:center;background:#24242E;border-radius:6px;font-size:11px;color:#9a9aa8;position:relative;height:100%}
+.a4 .cal b::after{content:'✓';position:absolute;inset:0;display:grid;place-items:center;background:var(--yel);color:#0B0B0F;border-radius:6px;font-weight:800;opacity:0;animation:check 5s ease infinite}
+.a4 .cal b:nth-child(1)::after{animation-delay:0s}.a4 .cal b:nth-child(2)::after{animation-delay:.4s}.a4 .cal b:nth-child(3)::after{animation-delay:.8s}.a4 .cal b:nth-child(4)::after{animation-delay:1.2s}.a4 .cal b:nth-child(5)::after{animation-delay:1.6s}.a4 .cal b:nth-child(6)::after{animation-delay:2s}.a4 .cal b:nth-child(7)::after{animation-delay:2.4s}
+@keyframes check{0%{opacity:0;transform:scale(.6)}8%,85%{opacity:1;transform:scale(1)}100%{opacity:0}}
+/* MOCKUPS */
+.phones{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 18px;margin:0 -18px;padding-left:18px;padding-right:18px;scrollbar-width:none}
+.phones::-webkit-scrollbar{display:none}
+.phone{flex:0 0 76%;max-width:300px;scroll-snap-align:center;background:#000;border-radius:30px;padding:10px;border:1px solid #2a2a36;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.scr{background:var(--bg2);border-radius:22px;padding:18px 14px 20px;min-height:430px;position:relative;overflow:hidden;font-size:13px}
+.scr .notch{width:90px;height:22px;background:#000;border-radius:0 0 14px 14px;margin:-18px auto 14px}
+.scr .tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--yel);margin-bottom:6px}
+.scr h4{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:20px;line-height:1.05;margin-bottom:12px}
+.scr .li{display:flex;gap:8px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line);color:#d8d8e0}
+.scr .li i{flex:0 0 18px;height:18px;border-radius:50%;background:var(--yel);color:#000;display:grid;place-items:center;font-size:11px;font-weight:800;font-style:normal}
+.scr .li.off i{background:#2b2b38;color:#888}
+.scr .box{background:#0B0B0F;border:1px solid var(--line);border-radius:12px;padding:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;line-height:1.5;color:#cfcfda}
+.scr .box b{color:var(--yel);font-weight:600}
+.scr .chip{display:inline-block;background:#24242E;border-radius:999px;padding:3px 9px;font-size:11px;margin:3px 3px 0 0;color:#ddd}
+.scr .bar{height:8px;background:#24242E;border-radius:4px;overflow:hidden;margin:8px 0 6px}
+.scr .bar i{display:block;height:100%;width:66%;background:var(--yel)}
+.scr .cta{margin-top:14px;background:var(--yel);color:#000;border-radius:10px;padding:11px;text-align:center;font-weight:800;font-size:13px}
+.scr .pfoot{position:absolute;left:0;right:0;bottom:0;background:#0B0B0F;border-top:1px solid var(--line);padding:10px 14px;font-size:11px;color:#888;display:flex;justify-content:space-between}
+.hintscroll{text-align:center;font-size:13px;color:var(--mut);margin-top:-6px}
+/* ACCORDION */
+.acc{display:grid;gap:10px}
+.acc details{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.acc summary{list-style:none;display:flex;align-items:center;gap:12px;padding:16px;cursor:pointer;font-weight:700;font-size:16px;-webkit-tap-highlight-color:transparent}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary .n{flex:0 0 36px;height:36px;border-radius:10px;background:var(--yel);color:#000;display:grid;place-items:center;font-family:Anton,Impact,sans-serif;font-size:18px}
+.acc summary .pl{margin-left:auto;width:24px;height:24px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:16px;color:var(--mut);transition:transform .2s}
+.acc details[open] summary .pl{transform:rotate(45deg)}
+.acc .body{padding:0 16px 16px 64px;font-size:15px;color:var(--mut)}
+.acc .body li{margin:6px 0 0 16px}
+/* RECEBE */
+.get{display:grid;gap:10px}
+.get div{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.get div i{flex:0 0 28px;height:28px;border-radius:50%;background:var(--yel);color:#000;display:grid;place-items:center;font-weight:800;font-style:normal;font-size:14px}
+.get b{display:block;color:var(--txt)}
+.get span{font-size:14px;color:var(--mut)}
+/* OFERTA */
+.offer{background:linear-gradient(180deg,var(--bg2),var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.price{background:var(--card);border:1px solid var(--yel);border-radius:22px;padding:26px 20px;text-align:center;box-shadow:0 0 0 6px rgba(255,214,0,.08)}
+.price .big{font-family:Anton,Impact,sans-serif;font-size:84px;line-height:1;color:var(--yel)}
+.price .big sup{font-size:30px;vertical-align:top;margin-top:10px;display:inline-block}
+.price .pay{font-size:14px;color:var(--mut);margin:6px 0 18px}
+.cmp{display:grid;gap:8px;text-align:left;margin:18px 0 4px}
+.cmp div{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:10px 12px;background:var(--bg);border-radius:10px;border:1px solid var(--line)}
+.cmp div b{color:var(--txt)}
+.cmp .hi{border-color:rgba(255,214,0,.5)}
+.cmp .hi b{color:var(--yel)}
+/* GARANTIA */
+.guar{display:flex;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.seal{flex:0 0 84px;height:84px;border-radius:50%;background:var(--yel);color:#000;display:grid;place-items:center;text-align:center;font-family:Anton,Impact,sans-serif;font-size:14px;line-height:1;padding:8px}
+.seal b{display:block;font-size:30px}
+/* FAQ */
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;padding:16px 0;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;gap:12px;-webkit-tap-highlight-color:transparent}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';color:var(--yel);font-size:22px;line-height:1;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{padding:0 0 16px;font-size:15px}
+/* FINAL / FOOTER */
+.final{text-align:center;background:radial-gradient(100% 70% at 50% 100%,rgba(255,214,0,.16),transparent 60%)}
+footer{padding:28px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--mut);text-align:center}
+footer a{color:var(--mut)}
+footer p{margin-top:10px;font-size:12px}
+/* STICKY */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(11,11,15,.92);backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .3s ease}
+.sticky.show{transform:none}
+.sticky .btn{min-height:56px;font-size:19px;max-width:560px;margin:0 auto;box-shadow:none}
+@media (min-width:700px){body{font-size:18px}.hero{padding-top:48px}.steps{grid-template-columns:1fr 1fr}.cards{grid-template-columns:repeat(3,1fr)}.wrap{max-width:720px}.phones{justify-content:center}.phone{flex-basis:220px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1124095767280326');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1124095767280326&ev=PageView&noscript=1"></noscript>
+</head>
+<body>
+
+<!-- 1. HERO -->
+<header class="hero" id="topo">
+  <div class="wrap">
+    <span class="kicker">Curso prático · sem videoaula · R$ 27</span>
+    <h1>Crie reels todos os dias <span>sem gravar, sem aparecer e sem editar.</span> O Claude faz por você.</h1>
+    <p class="lead">Você só diz o tema. A inteligência artificial escreve, narra, monta e agenda no seu Instagram.</p>
+
+    <div class="player" id="player">
+      <video id="vsl" playsinline muted loop autoplay preload="metadata" poster="assets/img/vsl-poster.webp" aria-label="Vídeo de apresentação da Máquina de Reels">
+        <source src="assets/vsl.mp4" type="video/mp4">
+      </video>
+      <button class="tap" id="tap" type="button" aria-label="Tocar com som">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></span>
+        <span class="lbl">Toque pra ouvir</span>
+        <span class="hint">1 min · com legenda</span>
+      </button>
+      <button class="mute" id="mute" type="button" aria-label="Silenciar">🔊</button>
+      <div class="prog"><i id="prog"></i></div>
+    </div>
+
+    <a class="btn buy" href="https://pay.kiwify.com.br/gtSBPIE">Quero a máquina por R$ 27</a>
+    <p class="sub">Pagamento único no cartão ou Pix · <b>Garantia de 7 dias</b> · Acesso imediato</p>
+  </div>
+</header>
+
+<!-- 2. PRA QUEM É -->
+<section id="pra-quem">
+  <div class="wrap">
+    <span class="kicker">Pra quem é</span>
+    <h2>Você quer crescer no Instagram, mas trava em um desses três pontos:</h2>
+    <div class="cards">
+      <div class="card"><div class="em">🙈</div><h3>Vergonha de aparecer</h3><p>Você não quer colocar a cara na câmera. Nem a voz. E tudo bem: aqui ninguém aparece.</p></div>
+      <div class="card"><div class="em">⏰</div><h3>Sem tempo</h3><p>Trabalho, família, rotina. Sobra zero hora pra gravar, cortar e postar todo dia.</p></div>
+      <div class="card"><div class="em">✂️</div><h3>Não sabe editar</h3><p>CapCut, Premiere, legenda, corte... Você desiste antes do primeiro vídeo ficar pronto.</p></div>
+    </div>
+    <p style="margin-top:18px">Se você se viu em pelo menos um, a Máquina de Reels foi feita pra você.</p>
+  </div>
+</section>
+
+<!-- 3. COMO FUNCIONA -->
+<section id="como-funciona" style="background:var(--bg2)">
+  <div class="wrap">
+    <span class="kicker">Como funciona</span>
+    <h2>Quatro passos. <span class="y">Zero câmera.</span></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="anim a1"><div class="bub">"Faz um reel sobre 3 erros de quem começa a investir"</div><div class="dots"><i></i><i></i><i></i></div></div>
+        <div><h3>Você pede</h3><p>Manda o tema em uma frase, do seu celular mesmo. Só isso.</p></div>
+      </div>
+      <div class="step">
+        <div class="anim a2"><div class="ln"></div><div class="ln"></div><div class="ln"></div><div class="ln"></div></div>
+        <div><h3>O Claude roteiriza</h3><p>Gancho, desenvolvimento e chamada pra ação, no formato que funciona em reels. Com os prompts prontos do curso.</p></div>
+      </div>
+      <div class="step">
+        <div class="anim a3"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div><h3>Voz de IA narra</h3><p>O ElevenLabs transforma o roteiro em narração natural, em português. Sua voz não entra em nada.</p></div>
+      </div>
+      <div class="step">
+        <div class="anim a4"><div class="cal"><b>S</b><b>T</b><b>Q</b><b>Q</b><b>S</b><b>S</b><b>D</b></div></div>
+        <div><h3>Agenda no Instagram</h3><p>O vídeo vai pro Google Drive e o Metricool publica no dia e hora certos. Todo dia, no automático.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PROVA DO PRODUTO -->
+<section id="dentro">
+  <div class="wrap">
+    <span class="kicker">Por dentro do curso</span>
+    <h2>Não é videoaula. <span class="y">É mão na massa.</span></h2>
+    <p style="margin-bottom:18px">Cada aula é um passo a passo interativo: você lê, faz, testa e avança. Os prompts se montam sozinhos com as suas respostas.</p>
+    <div class="phones" aria-label="Telas do curso">
+      <div class="phone"><div class="scr">
+        <div class="notch"></div>
+        <span class="tag">Módulo 3 · Aula 7</span>
+        <h4>Seu primeiro reel sem aparecer</h4>
+        <div class="li"><i>✓</i>Abrir o Projeto no Claude</div>
+        <div class="li"><i>✓</i>Gerar roteiro de 30 s</div>
+        <div class="li"><i>▶</i>Narrar com o conector ElevenLabs</div>
+        <div class="li off"><i>4</i>Montar o vídeo e salvar no Drive</div>
+        <div class="li off"><i>5</i>Teste rápido: 3 perguntas</div>
+        <div class="cta">Continuar aula →</div>
+        <div class="pfoot"><span>Aula 7 de 16</span><span>44% concluído</span></div>
+      </div></div>
+      <div class="phone"><div class="scr">
+        <div class="notch"></div>
+        <span class="tag">Prompt montado pra você</span>
+        <h4>Roteiro de reel</h4>
+        <div class="box">Você é roteirista de reels do nicho <b>[finanças pra iniciantes]</b>. Crie um reel de <b>[30 s]</b> no formato <b>[lista de 3 erros]</b>. Gancho nos primeiros 2 s, frases curtas, final com CTA pra <b>[comentar “quero”]</b>. Entregue em blocos: GANCHO · CORPO · CTA.</div>
+        <div style="margin-top:10px"><span class="chip">nicho ✓</span><span class="chip">duração ✓</span><span class="chip">formato ✓</span><span class="chip">CTA ✓</span></div>
+        <div class="cta">Copiar prompt</div>
+        <div class="pfoot"><span>Preenchido com suas respostas</span><span>⚡</span></div>
+      </div></div>
+      <div class="phone"><div class="scr">
+        <div class="notch"></div>
+        <span class="tag">Missão 2</span>
+        <h4>Agende 3 reels pra esta semana</h4>
+        <p style="font-size:13px;color:#bbb;margin-bottom:8px">Use o modo lote e deixe o Metricool publicar por você.</p>
+        <div class="bar"><i></i></div>
+        <div style="font-size:12px;color:#888">2 de 3 reels agendados</div>
+        <div class="li" style="margin-top:12px"><i>✓</i>Ter · 18h · "3 erros de iniciante"</div>
+        <div class="li"><i>✓</i>Qui · 12h · "Como começar com R$ 50"</div>
+        <div class="li off"><i>3</i>Sáb · 10h · escolher tema</div>
+        <div class="cta">Concluir missão</div>
+        <div class="pfoot"><span>Módulo 5 · Piloto automático</span><span>🏁</span></div>
+      </div></div>
+    </div>
+    <p class="hintscroll">← arraste pra ver mais →</p>
+  </div>
+</section>
+
+<!-- 5. MÓDULOS -->
+<section id="modulos" style="background:var(--bg2)">
+  <div class="wrap">
+    <span class="kicker">16 aulas · 7 módulos</span>
+    <h2>O que você vai construir</h2>
+    <div class="acc">
+      <details open><summary><span class="n">1</span>Fundação: nicho e página do zero<span class="pl">+</span></summary><div class="body">Escolha um nicho com demanda, defina o posicionamento e monte o perfil (nome, bio, identidade) sem precisar de designer.</div></details>
+      <details><summary><span class="n">2</span>O cérebro da página: Projetos no Claude<span class="pl">+</span></summary><div class="body">Crie um Projeto no Claude com a memória da sua página: tom de voz, público, formatos. A partir daqui, todo roteiro sai no seu estilo.</div></details>
+      <details><summary><span class="n">3</span>Produção sem aparecer: 1º reel, modo lote, vídeos liberados<span class="pl">+</span></summary><div class="body">Seu primeiro reel do início ao fim. Depois, o modo lote: vários reels em uma sentada. E onde achar vídeos de fundo liberados pra uso.</div></details>
+      <details><summary><span class="n">4</span>Viralização: métricas e formatos validados<span class="pl">+</span></summary><div class="body">Como ler retenção, alcance e salvamentos no Metricool, e os formatos de reel que você vai testar e repetir.</div></details>
+      <details><summary><span class="n">5</span>Piloto automático: tarefas agendadas postando todo dia<span class="pl">+</span></summary><div class="body">Monte rotinas automáticas no Claude que produzem e agendam seus reels. Você revisa, a máquina publica.</div></details>
+      <details><summary><span class="n">6</span>Comenta e recebe: link automático na DM<span class="pl">+</span></summary><div class="body">Configure o envio automático de link na DM quando alguém comenta a palavra-chave do seu reel.</div></details>
+      <details><summary><span class="n">7</span>Monetização: afiliado e produto próprio<span class="pl">+</span></summary><div class="body">Como estruturar a página pra divulgar produtos como afiliado (Shopee, TikTok Shop) ou um produto seu. Aqui você aprende o método, não uma promessa.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- 6. O QUE VOCÊ RECEBE -->
+<section id="recebe">
+  <div class="wrap">
+    <span class="kicker">O que você recebe</span>
+    <h2>Tudo que precisa pra <span class="y">ligar a máquina</span></h2>
+    <div class="get">
+      <div><i>✓</i><div><b>16 aulas interativas</b><span>Passo a passo com testes e missões. Você faz enquanto aprende.</span></div></div>
+      <div><i>✓</i><div><b>Prompts prontos que se montam sozinhos</b><span>Roteiro, legenda, hashtags, narração: preenche e usa.</span></div></div>
+      <div><i>✓</i><div><b>Modelos de rotina automática</b><span>Tarefas agendadas no Claude pra produzir e postar todo dia.</span></div></div>
+      <div><i>✓</i><div><b>Acesso pela área de membros da Kiwify</b><span>No celular ou computador, quando quiser, sem prazo pra terminar.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. OFERTA -->
+<section class="offer" id="oferta">
+  <div class="wrap">
+    <span class="kicker">Oferta</span>
+    <h2>Quanto custa ter reels saindo todo dia?</h2>
+    <div class="price">
+      <div class="cmp">
+        <div><span>Contratar um editor por vídeo</span><b>você já sabe que não é barato</b></div>
+        <div><span>Suas horas gravando e editando</span><b>as mais caras de todas</b></div>
+        <div class="hi"><span>Máquina de Reels, acesso completo</span><b>R$ 27</b></div>
+      </div>
+      <div class="big"><sup>R$</sup>27</div>
+      <div class="pay">Pagamento único · Cartão ou Pix · Sem mensalidade</div>
+      <a class="btn buy" href="https://pay.kiwify.com.br/gtSBPIE">Quero a máquina por R$ 27</a>
+      <p class="sub">Acesso enviado por e-mail na hora da compra</p>
+    </div>
+    <p style="margin-top:16px;font-size:14px">Preço justo de propósito: queremos que você teste o método hoje, não que fique pensando por um mês.</p>
+  </div>
+</section>
+
+<!-- 8. GARANTIA -->
+<section id="garantia">
+  <div class="wrap">
+    <div class="guar">
+      <div class="seal"><b>7</b>dias de garantia</div>
+      <div><h3 style="margin-bottom:6px">Risco zero pra você</h3><p style="font-size:15px">Entra, faz as primeiras aulas e, se não for pra você, pede o reembolso em até 7 dias direto na Kiwify. Sem perguntas, sem burocracia.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FAQ -->
+<section id="faq" style="background:var(--bg2)">
+  <div class="wrap">
+    <span class="kicker">Dúvidas</span>
+    <h2>Perguntas frequentes</h2>
+    <div class="faq">
+      <details><summary>Preciso de plano pago do Claude?</summary><p>Sim, o plano Pro é recomendado pra usar conectores e tarefas agendadas. ElevenLabs e Metricool têm plano grátis pra começar. O curso não inclui essas assinaturas.</p></details>
+      <details><summary>Dá pra fazer tudo pelo celular?</summary><p>Dá. O curso foi pensado pra quem está no celular: o Claude, o ElevenLabs e o Metricool funcionam pelo navegador ou pelos apps.</p></details>
+      <details><summary>Preciso aparecer ou usar minha voz?</summary><p>Não. Nenhuma etapa pede sua imagem ou sua voz. A narração é feita por voz de IA e o visual usa vídeos de fundo liberados pra uso.</p></details>
+      <details><summary>Quanto tempo por dia eu preciso?</summary><p>Depois de montar a máquina (as primeiras aulas), a rotina de revisar e aprovar os reels leva poucos minutos por dia. O tempo de montagem varia com o seu ritmo.</p></details>
+      <details><summary>Como recebo o acesso?</summary><p>Na hora da compra a Kiwify envia um e-mail com o login da área de membros. Confere a caixa de spam se não chegar em alguns minutos.</p></details>
+      <details><summary>Isso promete que vou ganhar dinheiro?</summary><p>Não. O curso ensina uma habilidade: produzir e agendar reels sem aparecer, e como estruturar a página pra monetizar. Resultado depende do seu nicho, da sua constância e do mercado.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 10. CTA FINAL -->
+<section class="final" id="final">
+  <div class="wrap">
+    <h2>Sua página postando <span class="y">todo dia</span>, começando hoje.</h2>
+    <p style="margin-bottom:22px">Sem câmera, sem edição, sem desculpa. Só você, o Claude e um plano claro de 16 aulas.</p>
+    <a class="btn buy" href="https://pay.kiwify.com.br/gtSBPIE">Quero a máquina por R$ 27</a>
+    <p class="sub">Pagamento único · Garantia de 7 dias · Acesso imediato</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><a href="termos.html">Termos de uso</a> · <a href="privacidade.html">Privacidade</a> · <a href="contato.html">Contato</a></div>
+    <p>Máquina de Reels · Pagamento processado pela Kiwify. Este curso ensina o uso de ferramentas de terceiros (Claude, ElevenLabs, Google Drive, Metricool) e não tem vínculo com as empresas citadas; as marcas pertencem aos seus donos. Não há promessa de ganhos: resultados dependem do seu trabalho.</p>
+    <p>Este site não faz parte do Facebook ou Facebook Inc. e não é endossado pelo Facebook. FACEBOOK é uma marca da Meta Platforms, Inc.</p>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"><a class="btn buy" href="https://pay.kiwify.com.br/gtSBPIE">Quero a máquina por R$ 27</a></div>
+
+<script>
+(function(){
+  var CHECKOUT='https://pay.kiwify.com.br/gtSBPIE';
+  var fb=function(){ if(window.fbq){ try{ fbq.apply(null,arguments);}catch(e){} } };
+
+  // UTM passthrough
+  var params=new URLSearchParams(location.search), keep=new URLSearchParams();
+  params.forEach(function(v,k){ if(/^utm_/i.test(k)||['src','sck','fbclid','ref'].indexOf(k.toLowerCase())>-1) keep.append(k,v); });
+  var url=CHECKOUT+(keep.toString()?'?'+keep.toString():'');
+  var buys=document.querySelectorAll('.buy');
+  buys.forEach(function(a){
+    a.href=url;
+    a.addEventListener('click',function(){ fb('track','InitiateCheckout',{content_name:'Maquina de Reels',currency:'BRL',value:27}); });
+  });
+
+  // Sticky CTA after first fold
+  var sticky=document.getElementById('sticky'), hero=document.querySelector('.hero');
+  var fin=document.getElementById('final');
+  function onScroll(){
+    var past=window.scrollY>hero.offsetHeight-80;
+    var atEnd=fin.getBoundingClientRect().top<window.innerHeight*0.6;
+    sticky.classList.toggle('show',past&&!atEnd);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  // VSL player
+  var v=document.getElementById('vsl'), p=document.getElementById('player'), tap=document.getElementById('tap'), mute=document.getElementById('mute'), prog=document.getElementById('prog');
+  var fired={};
+  function markers(){
+    if(!v.duration) return;
+    var pct=v.currentTime/v.duration*100;
+    prog.style.width=pct+'%';
+    [25,50,75].forEach(function(m){ if(pct>=m&&!fired[m]){ fired[m]=1; fb('track','ViewContent',{content_name:'VSL '+m+'%',content_category:'vsl',video_percent:m}); } });
+  }
+  v.addEventListener('timeupdate',markers);
+  v.addEventListener('ended',function(){ if(!fired[100]){fired[100]=1; fb('trackCustom','VSLComplete');} });
+  function unmute(){
+    v.muted=false; v.currentTime=0; v.loop=false; p.classList.add('on'); mute.textContent='🔊';
+    var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){});
+    fb('trackCustom','VSLUnmute');
+  }
+  tap.addEventListener('click',unmute);
+  mute.addEventListener('click',function(){ v.muted=!v.muted; mute.textContent=v.muted?'🔇':'🔊'; });
+  // Block skipping: no native controls, taps on video toggle play/pause only
+  v.addEventListener('click',function(){ if(!p.classList.contains('on')) return; v.paused?v.play():v.pause(); });
+  v.addEventListener('contextmenu',function(e){e.preventDefault();});
+  // Resume muted autoplay if browser blocked it
+  v.play&&v.play().catch(function(){});
+})();
+</script>
+</body>
+</html>

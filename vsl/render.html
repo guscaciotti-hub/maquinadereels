@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Anton';src:url(../site/assets/fonts/Anton-400-latin.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-weight:400 800;src:url(../site/assets/fonts/Inter-latin.woff2) format('woff2')}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B0B0F;font-family:Inter,sans-serif;color:#F4F4F6}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.scene{position:absolute;inset:0;display:none}
+.scene.on{display:block}
+.anton{font-family:Anton,sans-serif;text-transform:uppercase;line-height:.98;letter-spacing:.01em}
+.y{color:#FFD600}
+.center{position:absolute;left:80px;right:80px;top:50%;transform:translateY(-50%);text-align:center}
+.cap{position:absolute;left:70px;right:70px;bottom:300px;text-align:center;font-weight:800;font-size:66px;line-height:1.15;text-shadow:0 4px 24px rgba(0,0,0,.9)}
+.cap .w{display:inline-block;margin:0 10px;opacity:.55}
+.cap .w.on{opacity:1;color:#FFD600;transform:scale(1.06)}
+.cap .w.done{opacity:1}
+.grain{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 0%,rgba(255,214,0,.14),transparent 60%);pointer-events:none}
+.card{background:#17171F;border:3px solid #262633;border-radius:34px;padding:34px 46px;margin:0 0 24px;text-align:left;display:flex;gap:30px;align-items:center}
+.card .em{font-size:84px;line-height:1}
+.card .t{font-family:Anton,sans-serif;font-size:60px;text-transform:uppercase;line-height:1}
+.card .s{font-size:34px;color:#A3A3B2;margin-top:8px}
+.bar{position:absolute;left:0;top:0;height:14px;background:#FFD600;width:0}
+.stamp{position:absolute;left:50%;white-space:nowrap;transform:translate(-50%,-50%) rotate(-6deg);font-family:Anton,sans-serif;text-transform:uppercase;font-size:108px;color:#0B0B0F;background:#FFD600;padding:10px 40px;border-radius:18px;opacity:0}
+.flow{position:absolute;left:90px;right:90px;top:50%;transform:translateY(-50%)}
+.fl{display:flex;align-items:center;gap:30px;background:#17171F;border:3px solid #262633;border-radius:30px;padding:34px 40px;margin-bottom:26px;opacity:.25;transform:translateX(-30px)}
+.fl.on{opacity:1;transform:none;border-color:#FFD600}
+.fl .n{flex:0 0 96px;height:96px;border-radius:24px;background:#FFD600;color:#000;font-family:Anton,sans-serif;font-size:60px;display:grid;place-items:center}
+.fl .t{font-family:Anton,sans-serif;font-size:58px;text-transform:uppercase;line-height:1}
+.fl .s{font-size:32px;color:#A3A3B2;margin-top:6px}
+.btn{display:inline-block;background:#FFD600;color:#000;font-family:Anton,sans-serif;text-transform:uppercase;font-size:64px;padding:40px 56px;border-radius:30px;box-shadow:0 30px 80px rgba(255,214,0,.35)}
+.mods{position:absolute;left:90px;right:90px;top:50%;transform:translateY(-50%)}
+.md{display:flex;gap:26px;align-items:center;padding:20px 0;border-bottom:3px solid #262633;font-size:44px;font-weight:700;opacity:0;transform:translateY(20px)}
+.md.on{opacity:1;transform:none}
+.md b{flex:0 0 66px;height:66px;border-radius:16px;background:#FFD600;color:#000;font-family:Anton,sans-serif;font-size:40px;display:grid;place-items:center;font-weight:400}
+.phone{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:520px;height:1040px;background:#000;border-radius:70px;border:4px solid #2a2a36;padding:22px}
+.phone .scr{background:#13131A;border-radius:52px;height:100%;padding:40px 30px;font-size:26px;position:relative;overflow:hidden}
+.bub{background:#FFD600;color:#000;font-weight:700;font-size:30px;padding:24px 28px;border-radius:30px 30px 30px 8px;margin:60px 0 30px;max-width:85%}
+.ln{height:20px;border-radius:10px;background:#3A3A48;margin:22px 0;transform-origin:left;transform:scaleX(0)}
+.wave{display:flex;gap:10px;align-items:center;justify-content:center;height:220px}
+.wave i{display:block;width:16px;border-radius:8px;background:#FFD600;height:30px}
+.logo{font-family:Anton,sans-serif;text-transform:uppercase;font-size:150px;line-height:.92}
+.logo small{display:block;font-size:46px;letter-spacing:.3em;color:#FFD600;font-family:Inter,sans-serif;font-weight:800;margin-top:20px}
+.counter{display:flex;gap:40px;justify-content:center;margin-top:60px}
+.counter div{background:#17171F;border:3px solid #262633;border-radius:30px;padding:30px 46px;text-align:center}
+.counter b{display:block;font-family:Anton,sans-serif;font-size:120px;color:#FFD600;line-height:1}
+.counter span{font-size:34px;font-weight:700;color:#A3A3B2;letter-spacing:.1em}
+.price{font-family:Anton,sans-serif;font-size:420px;color:#FFD600;line-height:.9}
+.price sup{font-size:120px;vertical-align:top;display:inline-block;margin-top:40px}
+.seal{display:inline-block;background:#17171F;border:4px solid #FFD600;border-radius:999px;padding:26px 60px;font-weight:800;font-size:44px;margin-top:40px}
+.arrow{font-size:220px;line-height:1;color:#FFD600;margin-top:40px}
+</style></head><body><div id="stage">
+<div class="grain"></div>
+<div class="bar" id="bar"></div>
+<!-- S0 intro / hook -->
+<div class="scene" id="s0"><div class="center">
+  <div class="anton" style="font-size:150px"><span id="h1a">Crescer no</span><br><span id="h1b">Instagram</span></div>
+  <div class="anton y" id="h1c" style="font-size:200px;margin-top:40px;opacity:0">sem aparecer?</div>
+</div></div>
+<!-- S1 pain -->
+<div class="scene" id="s1"><div class="center" id="pain">
+  <div class="card" id="p0" style="opacity:0"><div class="em">📱</div><div><div class="t">Precisa postar</div><div class="s">reel todo dia</div></div></div>
+  <div class="card" id="p1" style="opacity:0"><div class="em">🙈</div><div><div class="t">Vergonha</div><div class="s">de aparecer na câmera</div></div></div>
+  <div class="card" id="p2" style="opacity:0"><div class="em">✂️</div><div><div class="t">Horas editando</div><div class="s">cortando, legendando...</div></div></div>
+  <div class="card" id="p3" style="opacity:0"><div class="em">⏰</div><div><div class="t">Sem tempo</div><div class="s">no fim do dia não sobra nada</div></div></div>
+  <div id="p4" style="opacity:0;margin-top:50px"><div class="anton" style="font-size:120px">página <span class="y">parada</span></div><div style="font-size:40px;color:#A3A3B2;margin-top:10px">0 posts esta semana</div></div>
+</div></div>
+<!-- S2 turn -->
+<div class="scene" id="s2"><div class="center">
+  <div class="anton" style="font-size:118px">E se o <span class="y">Claude</span><br>fizesse <span class="y">tudo</span><br>por você?</div>
+</div></div>
+<!-- S3 demo -->
+<div class="scene" id="s3"><div class="flow">
+  <div class="fl" id="f1"><div class="n">1</div><div><div class="t">Você pede</div><div class="s">"faz um reel sobre..."</div></div></div>
+  <div class="fl" id="f2"><div class="n">2</div><div><div class="t">Claude roteiriza</div><div class="s">gancho · corpo · CTA</div></div></div>
+  <div class="fl" id="f3"><div class="n">3</div><div><div class="t">Voz de IA narra</div><div class="s">ElevenLabs, em português</div></div></div>
+  <div class="fl" id="f4"><div class="n">4</div><div><div class="t">Agenda no Instagram</div><div class="s">Metricool, todo dia</div></div></div>
+</div>
+  <div class="stamp" id="st1" style="top:34%">sem gravar</div>
+  <div class="stamp" id="st2" style="top:50%">sem aparecer</div>
+  <div class="stamp" id="st3" style="top:66%">sem editar</div>
+</div>
+<!-- S4 course -->
+<div class="scene" id="s4">
+  <div class="center" id="c4a"><div class="logo">Máquina<br>de Reels<small>curso prático</small></div>
+    <div class="counter"><div><b>16</b><span>AULAS</span></div><div><b>7</b><span>MÓDULOS</span></div></div></div>
+  <div class="mods" id="c4b" style="display:none">
+    <div class="md"><b>1</b>Fundação: nicho e página do zero</div>
+    <div class="md"><b>2</b>Projetos no Claude</div>
+    <div class="md"><b>3</b>Produção sem aparecer</div>
+    <div class="md"><b>4</b>Viralização e métricas</div>
+    <div class="md"><b>5</b>Piloto automático</div>
+    <div class="md"><b>6</b>Link automático na DM</div>
+    <div class="md"><b>7</b>Monetização</div>
+  </div>
+</div>
+<!-- S5 offer -->
+<div class="scene" id="s5"><div class="center">
+  <div style="font-size:52px;font-weight:800;letter-spacing:.2em;color:#A3A3B2">PAGAMENTO ÚNICO</div>
+  <div class="price" id="price"><sup>R$</sup>27</div>
+  <div class="seal" id="seal" style="opacity:0">✓ 7 dias de garantia</div>
+</div></div>
+<!-- S6 cta -->
+<div class="scene" id="s6"><div class="center">
+  <div class="anton" style="font-size:110px;margin-bottom:60px">Monta a sua<br><span class="y">máquina hoje</span></div>
+  <div class="btn" id="cta">Quero a máquina<br>por R$ 27</div>
+  <div class="arrow" id="arr">↓</div>
+</div></div>
+<div class="cap" id="cap"></div>
+</div>
+<script>
+// Deterministic renderer: window.seek(t) sets the visual state for time t (seconds).
+const T=window.TIMELINE=null;
+const $=id=>document.getElementById(id);
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x,0,1),3);
+function show(id){document.querySelectorAll('.scene').forEach(s=>s.classList.toggle('on',s.id===id));}
+function fadeIn(el,t,start,dur=0.35,dy=40){const k=ease((t-start)/dur);el.style.opacity=k;el.style.transform=`translateY(${(1-k)*dy}px)`;}
+let WORDS=[],SCENES=[],DUR=60;
+window.setup=(words,scenes,dur)=>{WORDS=words;SCENES=scenes;DUR=dur;};
+window.seek=function(t){
+  $('bar').style.width=(t/DUR*1080)+'px';
+  // scenes
+  const sc=SCENES.find(s=>t>=s.start&&t<s.end)||SCENES[SCENES.length-1];
+  show(sc.id); const lt=t-sc.start;
+  if(sc.id==='s0'){ $('h1a').style.opacity=ease(lt/0.3); $('h1b').style.opacity=ease((lt-0.25)/0.3); const k=ease((lt-1.2)/0.4); $('h1c').style.opacity=k; $('h1c').style.transform=`scale(${0.7+0.3*k})`; }
+  if(sc.id==='s1'){ const c=sc.cues; ['p0','p1','p2','p3','p4'].forEach((id,i)=>fadeIn($(id),lt,c[i])); }
+  if(sc.id==='s2'){ const k=ease(lt/0.5); document.querySelector('#s2 .center').style.transform=`translateY(-50%) scale(${0.85+0.15*k})`; document.querySelector('#s2 .center').style.opacity=k; }
+  if(sc.id==='s3'){ const c=sc.cues||[]; ['f1','f2','f3','f4'].forEach((id,i)=>{$(id).classList.toggle('on',lt>=c[i]);}); ['st1','st2','st3'].forEach((id,i)=>{const k=ease((lt-c[4+i])/0.25); $(id).style.opacity=k; $(id).style.transform=`translate(-50%,-50%) rotate(${i%2?5:-6}deg) scale(${1.6-0.6*k})`;}); document.querySelector('#s3 .flow').style.opacity=lt>=c[4]?0.15:1; }
+  if(sc.id==='s4'){ const c=sc.cues||[]; const second=lt>=c[0]; $('c4a').style.display=second?'none':''; $('c4b').style.display=second?'':'none'; if(!second){document.querySelector('#s4 .logo').style.opacity=ease(lt/0.4); document.querySelector('.counter').style.opacity=ease((lt-c[1])/0.4);} else { document.querySelectorAll('.md').forEach((m,i)=>m.classList.toggle('on',lt>=c[0]+0.25*i)); } }
+  if(sc.id==='s5'){ const k=ease(lt/0.5); $('price').style.transform=`scale(${0.5+0.5*k})`; $('price').style.opacity=k; $('seal').style.opacity=ease((lt-(sc.cues?sc.cues[0]:2))/0.4); }
+  if(sc.id==='s6'){ const k=ease(lt/0.5); $('cta').style.transform=`scale(${0.8+0.2*k}) translateY(${Math.sin(t*6)*8}px)`; $('cta').style.opacity=k; $('arr').style.transform=`translateY(${Math.abs(Math.sin(t*5))*30}px)`; $('arr').style.opacity=ease((lt-0.4)/0.4); }
+  // captions: show current phrase, highlight current word
+  const cap=$('cap'); const ph=WORDS.find(p=>t>=p.start-0.15&&t<p.end+0.25);
+  if(!ph){cap.innerHTML='';return;}
+  if(cap.dataset.k!==String(ph.start)){cap.dataset.k=ph.start;cap.innerHTML=ph.words.map(w=>`<span class="w">${w.text}</span>`).join('');}
+  const spans=cap.children; ph.words.forEach((w,i)=>{spans[i].className='w'+(t>=w.start&&t<w.end?' on':(t>=w.end?' done':''));});
+};
+</script></body></html>
