@@ -48,6 +48,7 @@ export default async function handler(req, res){
     return bad(res, 'Método não permitido.', 405);
   } catch (e) {
     console.error(e);
+    if (/não configuradas/.test(e?.message||'')) return bad(res, 'Suporte em configuração. Tente de novo mais tarde.', 503);
     return bad(res, 'Erro interno. Tente de novo em instantes.', 500);
   }
 }

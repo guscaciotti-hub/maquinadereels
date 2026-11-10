@@ -2,7 +2,7 @@
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path'; import { pathToFileURL } from 'node:url';
 const root = path.resolve(new URL('../site', import.meta.url).pathname); const port = Number(process.argv[2]||8090);
 const types = { '.html':'text/html; charset=utf-8', '.css':'text/css', '.js':'text/javascript', '.mp4':'video/mp4', '.webp':'image/webp', '.jpg':'image/jpeg', '.woff2':'font/woff2', '.json':'application/json', '.svg':'image/svg+xml' };
-const rewrites = [[/^\/suporte\/t\/[^/]+$/, '/suporte/ticket.html']];
+const rewrites = [[/^\/suporte\/t\/[^/]+$/, '/suporte/ticket']];
 http.createServer(async (req, res) => {
   const u = new URL(req.url, 'http://x'); let p = u.pathname;
   if (p.startsWith('/api/')) {

@@ -28,7 +28,7 @@
   "rewrites": [
     {
       "source": "/suporte/t/:token",
-      "destination": "/suporte/ticket.html"
+      "destination": "/suporte/ticket"
     }
   ]
 }
