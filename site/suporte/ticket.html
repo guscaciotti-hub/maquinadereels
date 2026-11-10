@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seu chamado | Suporte Máquina de Reels</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0B0F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FFD600'/%3E%3Cpath d='M24 18l22 14-22 14z' fill='%230B0B0F'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/support.css">
+</head>
+<body>
+<header class="top"><a class="brand" href="/">Máquina <span>de Reels</span></a><a class="tag" href="/suporte" style="text-decoration:none">← Suporte</a></header>
+<main class="wrap">
+  <div id="loading"><p>Carregando seu chamado...</p></div>
+  <div id="notfound" class="hidden"><h1>Chamado <span class="y">não encontrado</span></h1><p style="margin-top:10px">Confira se o link está completo. Se precisar, <a href="/suporte">abra um novo chamado</a>.</p></div>
+  <div id="view" class="hidden">
+    <span class="kicker">Seu chamado</span>
+    <h1 id="title">Dúvida</h1>
+    <div class="row" style="margin-top:10px"><span class="chip" id="status"></span><span class="note" id="meta" style="margin:0"></span></div>
+    <div class="thread" id="thread"></div>
+    <section class="card" id="reply-card">
+      <h2 id="reply-title">Responder</h2>
+      <p id="reply-hint" style="font-size:14px"></p>
+      <form id="f" novalidate>
+        <textarea id="texto" maxlength="1000" required placeholder="Escreva aqui. Se resolveu, conta pra gente também :)"></textarea>
+        <div class="count"><span id="cnt">0</span>/1000</div>
+        <div class="msg" id="msg"></div>
+        <button class="btn" id="send" type="submit">Enviar resposta</button>
+      </form>
+    </section>
+    <p class="note">Respondemos em até 24h úteis. Guarde este link: ele é a sua chave de acesso ao chamado.</p>
+  </div>
+</main>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var token=(location.pathname.match(/\/suporte\/t\/([A-Za-z0-9_-]+)/)||[])[1]||new URLSearchParams(location.search).get('t');
+  var KEY='mr_support_tokens';
+  function saveToken(t){ try{ var a=JSON.parse(localStorage.getItem(KEY)||'[]').filter(function(x){return x!==t}); a.unshift(t); localStorage.setItem(KEY,JSON.stringify(a.slice(0,50))); }catch(e){} }
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]}); }
+  function fmt(d){ try{ return new Date(d).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'}); }catch(e){ return ''; } }
+  var LABEL={aberto:'Aguardando resposta',respondido:'Respondido',fechado:'Fechado'};
+  function render(t){
+    $('loading').classList.add('hidden'); $('view').classList.remove('hidden');
+    $('title').textContent=t.aula?'Aula '+t.aula:'Dúvida geral';
+    $('status').className='chip '+t.status; $('status').textContent=LABEL[t.status];
+    $('meta').textContent='Aberto em '+fmt(t.created_at)+' · '+t.nome;
+    $('thread').innerHTML=t.messages.map(function(m){ return '<div class="bub '+m.autor+'"><span class="who">'+(m.autor==='suporte'?'Suporte':'Você')+'</span>'+esc(m.texto)+'<span class="at">'+fmt(m.created_at)+'</span></div>'; }).join('');
+    $('reply-title').textContent=t.status==='fechado'?'Reabrir chamado':'Responder';
+    $('reply-hint').textContent=t.status==='fechado'?'Este chamado foi fechado. Se a dúvida voltou, responda aqui que ele reabre.':(t.status==='respondido'?'Ainda ficou dúvida? Responda aqui mesmo.':'Quer acrescentar algo? Escreva abaixo.');
+    document.title=(t.status==='respondido'?'Respondido · ':'')+'Seu chamado | Suporte Máquina de Reels';
+  }
+  if(!token){ $('loading').classList.add('hidden'); $('notfound').classList.remove('hidden'); return; }
+  function load(){
+    return fetch('/api/tickets?token='+encodeURIComponent(token)).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(d){ saveToken(token); render(d.ticket); }).catch(function(){ $('loading').classList.add('hidden'); $('notfound').classList.remove('hidden'); });
+  }
+  load();
+  $('texto').addEventListener('input',function(){ $('cnt').textContent=this.value.length; });
+  $('f').addEventListener('submit',function(e){
+    e.preventDefault(); var m=$('msg'); m.className='msg'; var texto=$('texto').value.trim();
+    if(texto.length<2){ m.className='msg err'; m.textContent='Escreva sua resposta.'; return; }
+    $('send').disabled=true;
+    fetch('/api/tickets?token='+encodeURIComponent(token),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({texto:texto})}).then(function(r){ return r.json().then(function(j){ return {ok:r.ok,j:j}; }); }).then(function(x){
+      if(!x.ok) throw new Error(x.j.error||'Não deu pra enviar.');
+      $('texto').value=''; $('cnt').textContent='0'; m.className='msg ok'; m.textContent='Enviado! Respondemos em até 24h úteis.'; return load();
+    }).catch(function(err){ m.className='msg err'; m.textContent=err.message; }).then(function(){ $('send').disabled=false; });
+  });
+})();
+</script>
+</body>
+</html>

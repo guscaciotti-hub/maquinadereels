@@ -15,3 +15,16 @@
 ## Ambiente
 - [ ] Ambiente `maquinadereels` criado na nuvem com acesso a ElevenLabs e token da Vercel salvo como segredo (nunca no código). Se quiser usar a API da ElevenLabs direto no pipeline, defina `ELEVENLABS_API_KEY` como variável de ambiente nesse ambiente.
 - [x] Repositório conectado ao projeto `maquinadereels-site` na Vercel (Root Directory `site`, branch `claude/determined-keller-x986v3`): cada push publica sozinho.
+
+## Suporte online (/suporte e /admin)
+Variáveis de ambiente do projeto `maquinadereels-site` na Vercel (Settings > Environment Variables, ambiente Production):
+- [ ] `SUPABASE_URL` = URL do projeto Supabase "Claude" (https://gmycqvvvglexbtbqkjzi.supabase.co)
+- [ ] `SUPABASE_SERVICE_ROLE_KEY` = chave service_role do mesmo projeto (Supabase > Project Settings > API Keys). Só no servidor; nunca vai pro navegador.
+- [ ] `ADMIN_EMAIL` = o único e-mail que pode entrar em /admin
+- [ ] `RESEND_API_KEY` = chave do Resend (resend.com), pra receber o aviso de novo chamado. Opcional: `SUPPORT_FROM` = remetente verificado (ex.: Suporte <suporte@seudominio.com>). Sem domínio verificado, o Resend só entrega do remetente de teste pro e-mail da própria conta Resend.
+- [ ] Depois de salvar as variáveis, faça um Redeploy (Deployments > ⋯ > Redeploy) pra elas valerem.
+
+Supabase (projeto "Claude"), em Authentication > URL Configuration:
+- [ ] Adicionar `https://maquinadereels-site.vercel.app/admin` em Redirect URLs (ou como Site URL). Sem isso o link mágico volta pra localhost.
+
+Como funciona a segurança: tabelas `tickets` e `messages` com RLS ligado e sem política pra anon/authenticated (nenhum acesso direto pelo navegador). O aluno só lê/escreve pelo token do link, via /api/tickets. O /admin só aceita o e-mail de `ADMIN_EMAIL`, validado no servidor a cada requisição.

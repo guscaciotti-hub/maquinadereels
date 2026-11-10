@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suporte | Máquina de Reels</title>
+<meta name="description" content="Suporte do curso Máquina de Reels: tire sua dúvida e receba resposta em até 24h úteis.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0B0F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FFD600'/%3E%3Cpath d='M24 18l22 14-22 14z' fill='%230B0B0F'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/support.css">
+</head>
+<body>
+<header class="top"><a class="brand" href="/">Máquina <span>de Reels</span></a><span class="tag">Suporte</span></header>
+<main class="wrap">
+  <span class="kicker">Suporte online</span>
+  <h1>Travou? A gente <span class="y">destrava com você.</span></h1>
+  <p style="margin-top:10px">Sem WhatsApp, sem fila: abre um chamado aqui e respondemos em até <b>24h úteis</b>. Você acompanha tudo por um link só seu.</p>
+
+  <section class="card" id="mine" hidden>
+    <h2>Seus chamados</h2>
+    <div class="list" id="mine-list"></div>
+  </section>
+
+  <section class="card">
+    <h2>Antes de abrir um chamado</h2>
+    <p>Dentro de cada aula tem o <b>🧯 Travou?</b> (os erros mais comuns daquela etapa) e o <b>💬 tutor com IA</b>, que responde na hora. Olha lá primeiro: 9 em 10 dúvidas se resolvem ali. Estes são os atalhos mais pedidos:</p>
+    <div style="margin-top:8px">
+      <details class="help"><summary>Comece aqui: ferramentas e custos</summary><p>Você precisa do <b>Claude Pro</b> (único custo fixo). ElevenLabs, Metricool, Google Drive e ManyChat têm plano grátis pra começar. A <a href="/#precisa">lista completa está na página do curso</a>; as contas são criadas seguindo as aulas do módulo 1 e da aula 3.1.</p></details>
+      <details class="help"><summary>ManyChat não manda o link na DM (aula 6.1)</summary><p>Confere, nesta ordem: 1) a conta do Instagram é <b>profissional</b> e está conectada no ManyChat; 2) a automação está <b>ativa</b> (botão no topo do fluxo); 3) a palavra-chave está exatamente igual à do reel; 4) o reel foi publicado <b>depois</b> de ativar. O passo a passo com prints está na aula 6.1.</p></details>
+      <details class="help"><summary>Conector não aparece ou dá erro no Claude (aula 3.1)</summary><p>Conectores pedem o plano <b>Claude Pro</b>. Em Configurações › Conectores, confirme que ElevenLabs, Google Drive e Metricool estão <b>conectados</b> e autorizados na mesma conta Google/e-mail. Se der erro de permissão, desconecte e conecte de novo. Na aula 3.1 tem o teste de 1 minuto pra cada conector.</p></details>
+      <details class="help"><summary>Tarefa agendada não rodou (aula 5.1)</summary><p>Veja se a tarefa está <b>ativada</b> e se o horário está no seu fuso. Tarefas agendadas usam um Projeto: o prompt precisa estar dentro dele. Se rodou mas não postou, abra o Metricool e confira se o reel ficou como rascunho. A aula 5.1 mostra como ler o histórico da tarefa.</p></details>
+    </div>
+  </section>
+
+  <section class="card" id="form-card">
+    <h2>Abrir um chamado</h2>
+    <form id="f" novalidate>
+      <label for="nome">Seu nome</label>
+      <input id="nome" name="nome" maxlength="80" autocomplete="name" required>
+      <label for="email">E-mail usado na compra</label>
+      <input id="email" name="email" type="email" maxlength="120" autocomplete="email" inputmode="email" required>
+      <label for="aula">Em que aula você travou? (opcional)</label>
+      <select id="aula" name="aula"><option value="">Não é sobre uma aula específica</option></select>
+      <label for="texto">Sua dúvida</label>
+      <textarea id="texto" name="texto" maxlength="1000" required placeholder="Conta o que você tentou fazer, o que aconteceu e, se tiver, a mensagem de erro."></textarea>
+      <div class="count"><span id="cnt">0</span>/1000</div>
+      <div class="hp" aria-hidden="true"><label for="website">Site</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="msg" id="msg"></div>
+      <button class="btn" id="send" type="submit">Enviar chamado</button>
+      <p class="note">Respondemos em até 24h úteis, de segunda a sexta. Você recebe um link pra acompanhar a resposta.</p>
+    </form>
+  </section>
+
+  <section class="card hidden" id="done">
+    <h2 class="y">Recebemos!</h2>
+    <p style="font-size:17px;color:var(--txt)">Respondemos em até 24h úteis.</p>
+    <p style="margin-top:10px">Guarde este link: é por ele que você acompanha e responde seu chamado.</p>
+    <p style="margin-top:8px;word-break:break-all"><a id="done-link" href="#"></a></p>
+    <div class="row" style="margin-top:14px"><a class="btn sm" id="done-open" href="#">Abrir meu chamado</a><button class="btn sm ghost" id="done-copy" type="button">Copiar link</button></div>
+    <p class="note">Este link também fica salvo neste navegador, em "Seus chamados".</p>
+  </section>
+</main>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var KEY='mr_support_tokens';
+  function tokens(){ try{ return JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ return []; } }
+  function saveToken(t){ var a=tokens().filter(function(x){return x!==t}); a.unshift(t); try{ localStorage.setItem(KEY,JSON.stringify(a.slice(0,50))); }catch(e){} }
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]}); }
+  function fmt(d){ try{ return new Date(d).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}); }catch(e){ return ''; } }
+  var LABEL={aberto:'Aguardando resposta',respondido:'Respondido',fechado:'Fechado'};
+
+  // aulas
+  fetch('/api/tickets?action=aulas').then(function(r){return r.json()}).then(function(d){
+    (d.aulas||[]).forEach(function(a){ var o=document.createElement('option'); o.value=a[0]; o.textContent=a[0]+' · '+a[1]; $('aula').appendChild(o); });
+  }).catch(function(){});
+
+  // meus chamados
+  var ts=tokens();
+  if(ts.length){
+    fetch('/api/tickets?action=mine',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({tokens:ts})}).then(function(r){return r.json()}).then(function(d){
+      if(!d.tickets||!d.tickets.length) return;
+      $('mine').hidden=false;
+      $('mine-list').innerHTML=d.tickets.map(function(t){
+        var pend=t.last_autor==='suporte'?' · <b style="color:var(--ok)">nova resposta</b>':'';
+        return '<a class="item" href="/suporte/t/'+t.token+'"><div class="h"><span>'+(t.aula?'Aula '+esc(t.aula):'Dúvida geral')+'</span><span class="chip '+t.status+'">'+LABEL[t.status]+'</span></div><div class="pv">'+esc(t.first)+'</div><div class="meta">Aberto em '+fmt(t.created_at)+pend+'</div></a>';
+      }).join('');
+    }).catch(function(){});
+  }
+
+  $('texto').addEventListener('input',function(){ $('cnt').textContent=this.value.length; });
+  $('f').addEventListener('submit',function(e){
+    e.preventDefault(); var m=$('msg'); m.className='msg'; m.textContent='';
+    var data={nome:$('nome').value,email:$('email').value,aula:$('aula').value,texto:$('texto').value,website:$('website').value};
+    if(data.nome.trim().length<2){ m.className='msg err'; m.textContent='Diga seu nome.'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email.trim())){ m.className='msg err'; m.textContent='Use o e-mail da compra.'; return; }
+    if(data.texto.trim().length<10){ m.className='msg err'; m.textContent='Descreva a dúvida com um pouco mais de detalhe.'; return; }
+    $('send').disabled=true; $('send').textContent='Enviando...';
+    fetch('/api/tickets',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).then(function(r){ return r.json().then(function(j){ return {ok:r.ok,j:j}; }); }).then(function(x){
+      if(!x.ok){ throw new Error(x.j.error||'Não deu pra enviar agora.'); }
+      if(x.j.token){ saveToken(x.j.token); }
+      var url=x.j.url||(location.origin+'/suporte/t/'+x.j.token);
+      $('done-link').textContent=url; $('done-link').href=url; $('done-open').href=url;
+      $('form-card').classList.add('hidden'); $('done').classList.remove('hidden'); $('done').scrollIntoView({behavior:'smooth'});
+      $('done-copy').onclick=function(){ try{ navigator.clipboard.writeText(url); this.textContent='Copiado ✓'; }catch(e){} };
+    }).catch(function(err){ m.className='msg err'; m.textContent=err.message; $('send').disabled=false; $('send').textContent='Enviar chamado'; });
+  });
+})();
+</script>
+</body>
+</html>
