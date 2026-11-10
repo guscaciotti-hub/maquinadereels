@@ -5,7 +5,7 @@
 - [ ] **Testar a compra real:** abrir a página no celular, clicar em "Quero a máquina", concluir um Pix de teste e confirmar que o e-mail da Kiwify chega.
 - [ ] **Pixel:** abrir a página com a extensão Meta Pixel Helper (ou Gerenciador de Eventos > Testar eventos) e confirmar PageView, ViewContent (25/50/75% da VSL) e InitiateCheckout. Depois, no Gerenciador de Eventos, marcar InitiateCheckout como evento de conversão/otimização (ou Purchase se você ativar o pixel/CAPI dentro da Kiwify).
 - [ ] **Purchase:** dentro da Kiwify, em Apps > Pixel do Facebook, cadastrar o pixel 1124095767280326 pra disparar Purchase no obrigado (a página de vendas só consegue disparar até o InitiateCheckout).
-- [ ] **Domínio:** comprar/apontar um domínio (ex.: maquinadereels.com.br) e adicioná-lo no projeto da Vercel (Settings > Domains). Anúncio com domínio próprio converte melhor e sofre menos bloqueio do que `*.vercel.app`.
+- [ ] **Domínio:** a página está em https://maquinadereels-site.vercel.app. Comprar/apontar um domínio (ex.: maquinadereels.com.br) e adicioná-lo no projeto da Vercel (Settings > Domains). Anúncio com domínio próprio converte melhor e sofre menos bloqueio do que `*.vercel.app`.
 - [ ] **UTMs no anúncio:** usar na URL do anúncio parâmetros como `?utm_source=meta&utm_medium=cpc&utm_campaign={{campaign.name}}&utm_content={{ad.name}}`. A página repassa tudo pro checkout e a Kiwify mostra nos relatórios.
 
 ## Assets
@@ -14,4 +14,4 @@
 
 ## Ambiente
 - [ ] Ambiente `maquinadereels` criado na nuvem com acesso a ElevenLabs e token da Vercel salvo como segredo (nunca no código). Se quiser usar a API da ElevenLabs direto no pipeline, defina `ELEVENLABS_API_KEY` como variável de ambiente nesse ambiente.
-- [ ] Conectar o repositório GitHub ao projeto da Vercel (Settings > Git) com Root Directory = `site`, pra cada push na branch principal publicar sozinho.
+- [x] Repositório conectado ao projeto `maquinadereels-site` na Vercel (Root Directory `site`, branch `claude/determined-keller-x986v3`): cada push publica sozinho.
