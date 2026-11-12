@@ -2,6 +2,11 @@ import json,re,sys
 words=json.load(open('vsl/build/words.json'))['words']
 OFF=0.8; DUR=60.0
 words=[w for w in words if w['type']=='word' and not re.match(r'^\[|\]$',w['text'])]
+CUT=(42.9,44.95)  # 'Tudo isso por vinte e sete reais.' removido (preço mudou p/ 19,90)
+S5=42.933+OFF
+allw=[dict(w) for w in words]
+for w in allw: w['start']+=OFF; w['end']+=OFF
+words=[w for w in words if not (CUT[0]<=w['start']<=CUT[1]) and not (47.45<=w['start']<=47.5)]
 for w in words: w['start']+=OFF; w['end']+=OFF
 # phrases: split on punctuation or every 4 words
 phr=[];cur=[]
@@ -12,7 +17,7 @@ for w in words:
 if cur: phr.append(cur)
 phrases=[{'start':p[0]['start'],'end':p[-1]['end'],'words':[{'text':w['text'],'start':w['start'],'end':w['end']} for w in p]} for p in phr]
 def at(txt,n=0):
-    hits=[w for w in words if w['text'].lower().strip('.,?:!')==txt.lower()]
+    hits=[w for w in allw if w['text'].lower().strip('.,?:!')==txt.lower()]
     return hits[n]['start']
 scenes=[
  {'id':'s0','start':0,'end':at('todo')},
